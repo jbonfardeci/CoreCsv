@@ -5,7 +5,7 @@ Import and export CSVs the easy way.
 
 Main functionality:
 
-* Reads a CSV file, mapping values to correct data types. Streams batches of CSV data rows to target table via SqlBulkCopy with a transaction.
+* Reads a CSV file from Stream object or string path, mapping values to correct data types. Streams batches of CSV data rows to target table via SqlBulkCopy with a transaction.
 * Writes ad-hoc or stored procedure query results into an accessible DataTable object. Writes to CSV file.
 
 ## Usage in C#
@@ -16,7 +16,7 @@ Import CSV into a database table.
 string connectionString = "Server=localhost;Database=myDatabaseName;Trusted_Connection=yes;";
 string path = @"C:\example.csv";
 string tableName = "dbo.TestTable";
-string delimiter = ','; // ',' by default
+string delimiter = ","; // ',' by default
 int headerRowCount = 1; // The number of header rows to skip. Set to 1 whether you use your own column names or the header in the CSV.
 string colNames = null; // You can use the column names in the CSV header or provide your own comma-delimited column names. They number and order must match the columns in the CSV.
 int batchSize = 1000; // Import large (multi-GB) files in batch sizes of your choosing, streaming in small chunks to the database.
@@ -39,7 +39,7 @@ Export results of a SQL query to CSV.
 ```C#
 string connectionString = "Server=localhost;Database=myDatabaseName;Trusted_Connection=yes;";
 string queryString = "SELECT * FROM dbo.TestTable";
-char delimiter = ','; // ',' by default
+string delimiter = ","; // ',' by default
 bool success = false;
 DataTable dataTable = null;
 
